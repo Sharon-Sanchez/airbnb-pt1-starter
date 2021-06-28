@@ -77,7 +77,7 @@ class User {
     )
     const user = userResult.rows[0]
 
-    return user
+    return User.makePublicUser(user)
   }
 
   static async fetchUserByEmail(email) {
@@ -101,7 +101,7 @@ class User {
 
     const query = `SELECT * FROM users WHERE username = $1`
 
-    const result = await db.query(query, [username.toLowerCase()])
+    const result = await db.query(query, [username])
 
     const user = result.rows[0]
 
